@@ -1,0 +1,32 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: bamdockerhub/apline-kube-terraform
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build Docker image
+          command: |
+            export TF_VAR_docker_image=bamdockerhub/project-template
+            docker build -t $TF_VAR_docker_image .
+            docker login -u $DOCKER_NAME -p $DOCKER_PW
+            docker push $TF_VAR_docker_image
+      - run:
+          name: Terrafrom deploy
+          command: |
+            export DO_CLUSTER_ID=d80aca69-f517-47dd-97a5-67b381a3d0bc
+
+            curl -X GET \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer ${DO_TOKEN}" \
+              "https://api.digitalocean.com/v2/kubernetes/clusters/${DO_CLUSTER_ID}/kubeconfig" > config
+
+            export KUBECONFIG=/root/project/config
+
+            terraform init -backend-config="conn_str=$PG_URI"
+            terraform workspace select project-template
+            terraform apply -auto-approve

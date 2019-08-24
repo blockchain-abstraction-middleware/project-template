@@ -17,3 +17,11 @@ go run main.go
 ```
 curl -X POST -H 'application/x-www-form-urlencoded' -d "hello=0xb4FC6774a95A86134768d81A8eE19Cfbf5A171F6" localhost:8080
 ```
+
+## Usage
+Clone the repo into a the correct path
+
+```shell
+git clone git@github.com:blockchain-abstraction-middleware/project-template.git $GOPATH/src/github.com/blockchain-abstraction-middleware/contract-data
+sudo rm -R .git
+```

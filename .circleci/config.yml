@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Terrafrom deploy
           command: |
-            export DO_CLUSTER_ID=d80aca69-f517-47dd-97a5-67b381a3d0bc
+            export DO_CLUSTER_ID=84ef2fc4-4f9a-4001-b100-c49a1c795d4b
 
             curl -X GET \
               -H "Content-Type: application/json" \
@@ -28,5 +28,6 @@ jobs:
             export KUBECONFIG=/root/project/config
 
             terraform init -backend-config="conn_str=$PG_URI"
+
             terraform workspace select project-template
             terraform apply -auto-approve

@@ -14,4 +14,6 @@ FROM gcr.io/distroless/base:latest
 
 COPY --from=build-env /go/src/github.com/blockchain-abstraction-middleware/project-template/app /usr/local/bin/app
 
+COPY --from=build-env /go/src/github.com/blockchain-abstraction-middleware/project-template/config.yml config.yml
+
 CMD ["/usr/local/bin/app"]

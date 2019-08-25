@@ -1,10 +1,10 @@
-package hello
+package routes
 
 import (
 	"fmt"
 	"net/http"
 
-	middleware "github.com/blockchain-abstraction-middleware/project-template/model"
+	middleware "github.com/blockchain-abstraction-middleware/contract-data/pkg/model"
 	"github.com/gorilla/schema"
 )
 
@@ -28,8 +28,6 @@ func Hello() middleware.Middleware {
 			if err != nil {
 				fmt.Println("Error decoding")
 			}
-
-			fmt.Fprintln(w, "202")
 
 			f(w, r)
 		}

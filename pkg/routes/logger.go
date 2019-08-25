@@ -1,11 +1,11 @@
-package logger
+package routes
 
 import (
 	"log"
 	"net/http"
 	"time"
 
-	middleware "github.com/blockchain-abstraction-middleware/project-template/model"
+	middleware "github.com/blockchain-abstraction-middleware/contract-data/pkg/model"
 )
 
 // Logging logs all requests

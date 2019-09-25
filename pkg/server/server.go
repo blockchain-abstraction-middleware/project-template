@@ -7,8 +7,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/spf13/viper"
 
-	routes "github.com/blockchain-abstraction-middleware/contract-data/pkg/routes"
-	utils "github.com/blockchain-abstraction-middleware/contract-data/pkg/utils"
+	routes "github.com/blockchain-abstraction-middleware/project-template/pkg/routes"
+	utils "github.com/blockchain-abstraction-middleware/project-template/pkg/utils"
 )
 
 // Serve the service

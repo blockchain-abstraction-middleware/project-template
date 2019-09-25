@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	middleware "github.com/blockchain-abstraction-middleware/contract-data/pkg/model"
+	middleware "github.com/blockchain-abstraction-middleware/project-template/pkg/model"
 )
 
 // Logging logs all requests

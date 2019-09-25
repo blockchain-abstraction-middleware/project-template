@@ -3,7 +3,7 @@ package utils
 import (
 	"net/http"
 
-	middleware "github.com/blockchain-abstraction-middleware/contract-data/pkg/model"
+	middleware "github.com/blockchain-abstraction-middleware/project-template/pkg/model"
 )
 
 // Chain applies middlewares to a http.HandlerFunc

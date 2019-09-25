@@ -1,7 +1,7 @@
 package main
 
 import (
-	server "github.com/blockchain-abstraction-middleware/contract-data/pkg/server"
+	server "github.com/blockchain-abstraction-middleware/project-template/pkg/server"
 )
 
 func main() {

@@ -3,6 +3,11 @@
 ## Overview
 Go scaffolding project
 
+- Install all dependencies
+```shell
+make deps
+```
+
 - Linting
 ```shell
 make lint

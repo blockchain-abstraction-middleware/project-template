@@ -6,8 +6,6 @@ jobs:
       - image: bamdockerhub/apline-kube-terraform
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
           name: Build Docker image
           command: |

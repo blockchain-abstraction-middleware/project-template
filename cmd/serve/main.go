@@ -8,7 +8,10 @@ import (
 
 func main() {
 	srv := server.New(server.NewConfig())
-	srv.RegisterResource(routes.NewResource("/health"))
+
+	healthResource := routes.HealthResource{}
+
+	srv.RegisterResource(healthResource.NewResource("/health"))
 
 	if err := srv.Run(); err != nil {
 		log.WithError(err).Fatal("Serving failed")

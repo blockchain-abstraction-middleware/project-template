@@ -14,26 +14,6 @@ import (
 	"github.com/go-chi/chi/middleware"
 )
 
-// // Serve the service
-// func Serve() {
-// 	viper.SetConfigName("config")
-// 	viper.AddConfigPath(".")
-
-// 	err := viper.ReadInConfig()
-// 	if err != nil {
-// 		panic(fmt.Errorf("Fatal error config file: %s", err))
-// 	}
-
-// 	fmt.Println("Environment:", viper.Get("environment"))
-
-// 	r := mux.NewRouter()
-
-// 	r.HandleFunc("/", utils.Chain(routes.Status, routes.Hello(), routes.Logging()))
-// 	http.Handle("/", r)
-
-// 	http.ListenAndServe(":8080", nil)
-// }
-
 // Server encapsulates a HTTP Server lifecycle
 type Server interface {
 	RegisterMiddleware(middleware ...func(http.Handler) http.Handler)

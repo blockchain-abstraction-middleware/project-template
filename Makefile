@@ -4,7 +4,10 @@ install:
 serve:
 	go run cmd/serve/main.go
 
-deps: 
+build:
+	go build ./...
+
+deps:
 	go get ./...
 
 lint: 
@@ -15,6 +18,7 @@ lint:
 
 .PHONY: \
 	install \
+	build \
 	serve \
 	deps \
 	lint \

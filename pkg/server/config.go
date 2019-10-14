@@ -1,15 +1,16 @@
 package server
 
 import (
+	"fmt"
 	"os"
-	"strconv"
+
+	"github.com/spf13/viper"
 )
 
 // Environment Vars
 const (
-	EnvMetricsEnabled = "METRICS_ENABLED"
-	EnvServerHost     = "SERVER_HOST"
-	EnvServerPort     = "SERVER_PORT"
+	EnvEnvironment    = "ENVIRONMENT"
+	EnvConfigLocation = "CONFIG_PATH"
 )
 
 // Config exposes Server configuration options
@@ -22,31 +23,23 @@ type Config struct {
 
 // NewConfig constructs a new *server.Config instance with defaults
 func NewConfig() *Config {
+	viper.SetConfigName(getEnvironmentVariable(EnvEnvironment, "review"))
+	viper.AddConfigPath(getEnvironmentVariable(EnvConfigLocation, "./config"))
+
+	err := viper.ReadInConfig()
+	if err != nil {
+		panic(fmt.Errorf("Fatal error config file: %s", err))
+	}
+
 	return &Config{
 		BasePath:       "/api/v1",
-		Name:           getStringEnvironmentVariable(EnvServerHost, "project-template"),
-		Port:           getIntEnvironmentVariable(EnvServerPort, 8080),
-		MetricsEnabled: getBoolEnvironmentVariable(EnvMetricsEnabled, false),
+		Name:           viper.GetString("host"),
+		Port:           viper.GetInt("port"),
+		MetricsEnabled: viper.GetBool("metrics"),
 	}
 }
 
-func getBoolEnvironmentVariable(key string, fallback bool) bool {
-	if value, ok := os.LookupEnv(key); ok {
-		boolValue, _ := strconv.ParseBool(value)
-		return boolValue
-	}
-	return fallback
-}
-
-func getIntEnvironmentVariable(key string, fallback int) int {
-	if value, ok := os.LookupEnv(key); ok {
-		intValue, _ := strconv.Atoi(value)
-		return intValue
-	}
-	return fallback
-}
-
-func getStringEnvironmentVariable(key string, fallback string) string {
+func getEnvironmentVariable(key string, fallback string) string {
 	if value, ok := os.LookupEnv(key); ok {
 		return value
 	}

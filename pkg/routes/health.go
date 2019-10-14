@@ -6,29 +6,29 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/blockchain-abstraction-middleware/eros/server"
+	"github.com/blockchain-abstraction-middleware/project-template/pkg/server"
 	"github.com/go-chi/chi"
 )
 
-// healthResource implements server.Resource interface
-type healthResource struct {
+// HealthResource implements server.Resource interface
+type HealthResource struct {
 	path string
 }
 
 // NewResource constructor func
-func NewResource(path string) server.Resource {
-	return &healthResource{
+func (r *HealthResource) NewResource(path string) server.Resource {
+	return &HealthResource{
 		path: path,
 	}
 }
 
 // Path returns the Resource base path
-func (r *healthResource) Path() string {
+func (r *HealthResource) Path() string {
 	return r.path
 }
 
 // Routes bootstraps health routes
-func (r *healthResource) Routes() http.Handler {
+func (r *HealthResource) Routes() http.Handler {
 	router := chi.NewRouter()
 
 	router.Get("/status", r.healthCheck())
@@ -36,7 +36,7 @@ func (r *healthResource) Routes() http.Handler {
 	return router
 }
 
-func (r *healthResource) healthCheck() http.HandlerFunc {
+func (r *HealthResource) healthCheck() http.HandlerFunc {
 	return func(res http.ResponseWriter, req *http.Request) {
 		payload := struct {
 			Message    string `json:"message"`

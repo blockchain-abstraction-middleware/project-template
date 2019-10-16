@@ -1,9 +1,19 @@
 package main
 
 import (
-	server "github.com/blockchain-abstraction-middleware/project-template/pkg/server"
+	log "github.com/blockchain-abstraction-middleware/project-template/pkg/logger"
+	"github.com/blockchain-abstraction-middleware/project-template/pkg/routes"
+	"github.com/blockchain-abstraction-middleware/project-template/pkg/server"
 )
 
 func main() {
-	server.Serve()
+	srv := server.New(server.NewConfig())
+
+	healthResource := routes.HealthResource{}
+
+	srv.RegisterResource(healthResource.NewResource("/health"))
+
+	if err := srv.Run(); err != nil {
+		log.WithError(err).Fatal("Serving failed")
+	}
 }

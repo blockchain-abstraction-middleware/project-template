@@ -1,0 +1,4 @@
+environment: staging
+name: project-template
+port: 8080
+metrics: false

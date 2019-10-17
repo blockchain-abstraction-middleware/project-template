@@ -1,11 +1,9 @@
 package routes
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
-	"time"
 
+	"github.com/blockchain-abstraction-middleware/project-template/pkg/health"
 	"github.com/blockchain-abstraction-middleware/project-template/pkg/server"
 	"github.com/go-chi/chi"
 )
@@ -38,15 +36,8 @@ func (r *HealthResource) Routes() http.Handler {
 
 func (r *HealthResource) healthCheck() http.HandlerFunc {
 	return func(res http.ResponseWriter, req *http.Request) {
-		payload := struct {
-			Message    string `json:"message"`
-			StatusCode int    `json:"statusCode"`
-		}{
-			fmt.Sprintf("Healthy response from service at - %s", time.Now()),
-			200,
-		}
+		json := health.Handler()
 
-		json, _ := json.Marshal(payload)
 		res.Header().Set("Content-Type", "application/json")
 		res.WriteHeader(200)
 		res.Write(json)

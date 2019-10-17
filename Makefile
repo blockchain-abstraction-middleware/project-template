@@ -1,3 +1,22 @@
+VERSION := 0.0.1
+
+DOCKER_REG = bamdockerhub
+DOCKER_IMAGE = project-template
+DOCKER_IMAGE_TAG = $(VERSION)
+USER = $(shell whoami)
+
+docker-build:
+	docker build -t $(DOCKER_REG)/$(DOCKER_IMAGE):$(DOCKER_IMAGE_TAG) .
+
+docker-push:
+	docker push $(DOCKER_REG)/$(DOCKER_IMAGE):$(DOCKER_IMAGE_TAG)
+
+docker-build-dev:
+	docker build -t $(DOCKER_REG)/$(DOCKER_IMAGE):$(USER) .
+
+docker-push-dev:
+	docker push $(DOCKER_REG)/$(DOCKER_IMAGE):$(USER)
+
 install:
 	go install -v
 

@@ -29,6 +29,9 @@ build:
 deps:
 	go get ./...
 
+test:
+	go test ./... -cover
+
 lint: 
 	gofmt -s -w .
 	gofmt -r '(a) -> a' -l *.go .
@@ -41,3 +44,4 @@ lint:
 	serve \
 	deps \
 	lint \
+	test \

@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/blockchain-abstraction-middleware/project-template/pkg/health"
-	"github.com/blockchain-abstraction-middleware/project-template/pkg/server"
 	"github.com/go-chi/chi"
 )
 
@@ -14,7 +13,7 @@ type HealthResource struct {
 }
 
 // NewResource constructor func
-func (r *HealthResource) NewResource(path string) server.Resource {
+func (r *HealthResource) NewResource(path string) *HealthResource {
 	return &HealthResource{
 		path: path,
 	}
@@ -36,7 +35,7 @@ func (r *HealthResource) Routes() http.Handler {
 
 func (r *HealthResource) healthCheck() http.HandlerFunc {
 	return func(res http.ResponseWriter, req *http.Request) {
-		json := health.Handler()
+		json, _ := health.Handler()
 
 		res.Header().Set("Content-Type", "application/json")
 		res.WriteHeader(200)

@@ -7,7 +7,7 @@ import (
 )
 
 // Handler used in the health resource
-func Handler() []byte {
+func Handler() ([]byte, error) {
 	payload := struct {
 		Message    string `json:"message"`
 		StatusCode int    `json:"statusCode"`
@@ -16,7 +16,7 @@ func Handler() []byte {
 		200,
 	}
 
-	json, _ := json.Marshal(payload)
+	json, err := json.Marshal(payload)
 
-	return json
+	return json, err
 }

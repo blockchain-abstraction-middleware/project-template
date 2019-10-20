@@ -34,6 +34,7 @@ jobs:
             terraform init -backend-config="conn_str=$PG_URI"
 
             terraform workspace select go-apis
+            terraform taint module.go_api_deployment_project_template.kubernetes_deployment.main
             terraform apply -auto-approve
 
 workflows:

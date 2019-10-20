@@ -37,3 +37,14 @@ curl 0.0.0.0:8080/api/v1/health/status
 - `git clone git@github.com:blockchain-abstraction-middleware/project-template.git .`
 - `sudo rm -r .git`
 - :thumbs_up:
+
+### Things to update 
+
+`main.tf`
+- Line 12: update module "name"
+- Line 15: update deployment_name
+- Line 16: update docker_image
+
+`.circleci/config.yml`
+- Line 20: update TF_VAR_docker_image to === the name in `main.tf`
+- Line 37: update  `terraform taint module.'your_module_name'.kubernetes_deployment.main` to === name in `main.tf`

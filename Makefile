@@ -21,7 +21,7 @@ install:
 	go install -v
 
 serve:
-	go run cmd/serve/main.go
+	cd cmd/serve; go run main.go
 
 build:
 	go build ./...

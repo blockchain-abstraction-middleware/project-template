@@ -10,8 +10,10 @@ func main() {
 	srv := server.New(server.NewConfig())
 
 	healthResource := routes.HealthResource{}
+	swaggerResource := routes.SwaggerResource{}
 
 	srv.RegisterResource(healthResource.NewResource("/health"))
+	srv.RegisterResource(swaggerResource.NewResource("/swagger"))
 
 	if err := srv.Run(); err != nil {
 		log.WithError(err).Fatal("Serving failed")

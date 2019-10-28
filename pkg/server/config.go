@@ -33,7 +33,7 @@ func NewConfig() *Config {
 
 	return &Config{
 		BasePath:       "/api/v1",
-		Name:           viper.GetString("host"),
+		Name:           viper.GetString("name"),
 		Port:           viper.GetInt("port"),
 		MetricsEnabled: viper.GetBool("metrics"),
 	}

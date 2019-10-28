@@ -32,6 +32,12 @@ make docker-build
 curl 0.0.0.0:8080/api/v1/health/status
 ```
 
+### Swagger UI
+Swagger ui will be exposed at:
+```
+0.0.0.0:8080/api/v1/swagger/docs/swaggerui/
+```
+
 ### How to use
 - `mkdir new-prog && cd new-prog`
 - `git clone git@github.com:blockchain-abstraction-middleware/project-template.git .`

@@ -7,7 +7,13 @@ import (
 )
 
 func main() {
-	srv := server.New(server.NewConfig())
+	serverConfig := server.Config{
+		BasePath:       "/api/v1",
+		Name:           "project-template",
+		Port:           8080,
+		MetricsEnabled: false,
+	}
+	srv := server.New(&serverConfig)
 
 	healthResource := routes.HealthResource{}
 	swaggerResource := routes.SwaggerResource{}

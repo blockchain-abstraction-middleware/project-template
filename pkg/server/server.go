@@ -14,6 +14,14 @@ import (
 	"github.com/go-chi/chi/middleware"
 )
 
+// Config exposes Server configuration options
+type Config struct {
+	BasePath       string
+	MetricsEnabled bool
+	Name           string
+	Port           int
+}
+
 // Server encapsulates a HTTP Server lifecycle
 type Server interface {
 	RegisterMiddleware(middleware ...func(http.Handler) http.Handler)

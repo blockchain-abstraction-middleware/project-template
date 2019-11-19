@@ -14,4 +14,6 @@ module "go_api_deployment_project_template" {
   namespace       = "go-apis"
   deployment_name = "project-template"
   docker_image    = "bamdockerhub/project-template"
+  config_file     = "review.yml"
+  config_path     = "/config/"
 }

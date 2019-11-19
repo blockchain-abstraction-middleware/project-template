@@ -1,5 +1,5 @@
 # Build Env
-FROM golang:1.12 AS build-env
+FROM bamdockerhub/go-alpine-build AS build-env
 
 ENV GO111MODULE=on
 
@@ -10,7 +10,7 @@ WORKDIR /go/src/github.com/blockchain-abstraction-middleware/project-template
 RUN go build -i -o app ./cmd/serve/main.go
 
 # Application Image
-FROM gcr.io/distroless/base:latest
+FROM bamdockerhub/alpine-gpg
 
 COPY --from=build-env /go/src/github.com/blockchain-abstraction-middleware/project-template/app /usr/local/bin/app
 
